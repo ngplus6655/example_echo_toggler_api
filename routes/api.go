@@ -9,8 +9,11 @@ func Init(e *echo.Echo) {
 	g := e.Group("/api")
     {
 			g.GET("/hello", api.ReturnHello())
+
 			g.GET("/bool_toggler/:id", api.GetBoolToggler())
 			g.POST("/bool_togglers", api.CreateBoolToggler())
 			g.PUT("/bool_toggler/:id/toggle", api.ToggleBoolToggler())
+
+			g.POST("/users", api.CreateUser())
 		}
 }
