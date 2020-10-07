@@ -1,0 +1,52 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./docker/go/Dockerfile
+    tty: true
+    volumes:
+      - .:/go/src/app
+    ports:
+      - '8080:8080'
+    environment:
+      - GO111MODULE=on
+      - CGO_ENABLED=0
+    depends_on:
+      - db
+    networks:
+      - test_network
+
+  frontend:
+      build: ./docker/node/
+      ports:
+        - "3333:3333"
+      working_dir: "/usr/local/src"
+      volumes:
+        - ".:/usr/local/src"
+        - test_node_modules_volume:/usr/local/src/frontend/node_modules
+      tty: true
+      networks:
+        - test_network
+
+  db:
+    build: ./docker/db/
+    volumes:
+      - test_dbdata:/var/lib/mysql
+      - ./docker/db/initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=youtube
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=default
+      - MYSQL_PASSWORD=password
+      - TZ=Asia/Tokyo
+    ports:
+      - "3306:3306"
+    networks:
+      - test_network
+
+volumes:
+  test_node_modules_volume:
+  test_dbdata:
+networks:
+  test_network:

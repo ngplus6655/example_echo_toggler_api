@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS mysql_dev;
+DROP DATABASE IF EXISTS mysql_test;
+
+CREATE DATABASE mysql_dev;
+CREATE DATABASE mysql_test;
