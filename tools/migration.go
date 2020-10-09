@@ -14,4 +14,5 @@ func main() {
 	}
 	db.Debug().AutoMigrate(&models.BoolToggler{})
 	db.Debug().AutoMigrate(&models.User{})
+	db.Debug().AutoMigrate(&models.Favorite{})
 }

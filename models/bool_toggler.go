@@ -5,12 +5,7 @@ import (
 )
 
 type BoolToggler struct {
-	// type gorm.Model struct {
-			// ID        uint           `gorm:"primaryKey"`
-			// CreatedAt time.Time
-			// UpdatedAt time.Time
-			// DeletedAt gorm.DeletedAt `gorm:"index"`
-	// }
 	gorm.Model
-  Toggler bool `json:"toggler"`
+	Toggler bool `json:"toggler"`
+	Users []*User `gorm:"many2many:user_boolTogglers;"`
 }

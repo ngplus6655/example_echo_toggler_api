@@ -8,5 +8,5 @@ type User struct {
 	gorm.Model
 	Name string `json:"name"`
 	// UserはBoolTogglerを所有します
-	BoolTogglers []BoolToggler
+	BoolTogglers []*BoolToggler `gorm:"many2many:user_boolTogglers;"`
 }
