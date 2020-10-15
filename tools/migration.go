@@ -13,4 +13,5 @@ func main() {
 		logrus.Fatal(err)
 	}
 	db.Debug().AutoMigrate(&models.BoolToggler{})
+	db.Debug().AutoMigrate(&models.User{})
 }
