@@ -15,6 +15,7 @@ func Init(e *echo.Echo) {
 			g.PUT("/bool_toggler/:id/toggle", api.ToggleBoolToggler())
 
 			g.POST("/users", api.CreateUser())
+			g.GET("/user/:id", api.ShowUserInfo())
 			g.POST("/favorite/users/:user_id/bool_togglers/:toggler_id", 
 			api.ToggleFavoriteToggler())
 		}

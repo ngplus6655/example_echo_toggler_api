@@ -7,6 +7,6 @@ import (
 type User struct {
 	gorm.Model
 	Name string `json:"name"`
-	// UserはBoolTogglerを所有します
-	BoolTogglers []*BoolToggler `gorm:"many2many:user_boolTogglers;"`
+	// FavoritesでboolTogglerのスライスを保持
+	Favorites []BoolToggler `gorm:"many2many:user_favorite_togglers;"`
 }
