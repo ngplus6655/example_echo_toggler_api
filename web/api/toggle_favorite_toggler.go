@@ -20,7 +20,7 @@ func ToggleFavoriteToggler() echo.HandlerFunc {
 
 		// DB接続
 		dbs := c.Get("dbs").(*middlewares.DatabaseClient)
-		
+
 		// パスパラメータをuintに変換する
 		intUserId, _ := strconv.Atoi(c.Param("user_id"))
 		uintUserId := uint(intUserId)
@@ -37,7 +37,7 @@ func ToggleFavoriteToggler() echo.HandlerFunc {
 		boolToggler.ID = uintTogglerId
 		
 		// Preloadでuserのリレーションを有効化してselect
-		user := &models.User{}
+		user := models.User{}
 		dbs.DB.Preload("Favorites", "bool_toggler_id = ?", uintTogglerId).
 		Find(&user, uintUserId)
 
